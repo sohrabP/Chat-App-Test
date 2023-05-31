@@ -23,7 +23,7 @@ export default function ChatScreen({ route }) {
   //Add listener to database on component mount
   React.useEffect(() => {
     const q = query(
-      collection(db, "chat-app-uppsala"),
+      collection(db, "chat-app-uppsala-2.0"),
       limitToLast(25),
       orderBy("date")
     );
@@ -46,7 +46,7 @@ export default function ChatScreen({ route }) {
 
   async function Fetch() {
     const q = query(
-      collection(db, "chat-app-uppsala"),
+      collection(db, "chat-app-uppsala-2.0"),
       orderBy("date"),
       endBefore(lastDocument.current),
       limitToLast(25)
@@ -64,7 +64,7 @@ export default function ChatScreen({ route }) {
 
   async function SaveMessage(text) {
     try {
-      const docRef = await addDoc(collection(db, "chat-app-uppsala"), {
+      const docRef = await addDoc(collection(db, "chat-app-uppsala-2.0"), {
         name,
         text,
         date: new Date().toLocaleString("sv-SE"),

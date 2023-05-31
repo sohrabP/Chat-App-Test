@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
     maxHeight: "40%",
   },
   input: {
+    backgroundColor: 'white',
     width: "100%",
     margin: 12,
     borderWidth: 1,
