@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, View, Text } from "react-native";
 
 function Message({ name, text, date }) {
-  console.log("rendered")
   return (
     <View style={styles.message}>
       <Text style={styles.name}>{name}:</Text>

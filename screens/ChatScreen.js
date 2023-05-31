@@ -16,6 +16,7 @@ import db from "../firestore";
 
 export default function ChatScreen({ route }) {
   const { name } = route.params;
+
   const [messages, setMessages] = React.useState([]);
 
   const lastDocument = React.useRef(null);
@@ -35,6 +36,7 @@ export default function ChatScreen({ route }) {
         }
       });
 
+      //For keeping track of last document shown in UI
       if (lastDocument.current === null) {
         lastDocument.current = snapshot.docs[0];
       }
@@ -44,7 +46,7 @@ export default function ChatScreen({ route }) {
     return () => unsubscribe();
   }, []);
 
-  async function Fetch() {
+  async function FetchMore() {
     const q = query(
       collection(db, "chat-app-uppsala-2.0"),
       orderBy("date"),
@@ -53,6 +55,7 @@ export default function ChatScreen({ route }) {
     );
     const documentSnapshots = await getDocs(q);
 
+    //Check to see if there is any results
     if (documentSnapshots.docs.length !== 0) {
       documentSnapshots.forEach((doc) => {
         setMessages((oldMessages) => [...oldMessages, doc.data()]);
@@ -77,7 +80,7 @@ export default function ChatScreen({ route }) {
 
   return (
     <View style={styles.container}>
-      <MessagesList name={name} messages={messages} Fetch={Fetch} />
+      <MessagesList name={name} messages={messages} FetchMore={FetchMore} />
       <WriteMessagePanel name={name} SaveMessage={SaveMessage} />
     </View>
   );
