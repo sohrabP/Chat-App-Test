@@ -16,7 +16,7 @@ export default function HomeScreen({ navigation }) {
         style={styles.input}
         onChangeText={setName}
         value={name}
-        placeholder="Enter your name"
+        placeholder="Enter your display name"
       />
       <Button disabled={!name} title="Login" onPress={Submit} />
     </View>
@@ -25,14 +25,17 @@ export default function HomeScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: "#fff",
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
   },
   input: {
+    width: '50%',
     textAlign: "center",
     margin: 12,
-    borderWidth: 0.5,
+    borderWidth: 1,
     padding: 5,
+    borderRadius: 3,
   },
 });

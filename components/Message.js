@@ -1,6 +1,8 @@
+import React from 'react';
 import { StyleSheet, View, Text } from "react-native";
 
-export default function Message({ name, text, date }) {
+function Message({ name, text, date }) {
+  console.log("rendered")
   return (
     <View style={styles.message}>
       <Text style={styles.name}>{name}:</Text>
@@ -32,3 +34,5 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
 });
+
+export default React.memo(Message);

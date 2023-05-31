@@ -5,6 +5,11 @@ export default function WriteMessagePanel({ SaveMessage }) {
   const [text, setText] = React.useState("");
   const [height, setHeight] = React.useState();
 
+  function Submit() {
+    SaveMessage(text)
+    setText("");
+  }
+
   return (
     <View style={styles.container}>
       <TextInput
@@ -15,7 +20,7 @@ export default function WriteMessagePanel({ SaveMessage }) {
         placeholder="Write a message"
         onContentSizeChange={(e) => setHeight(e.nativeEvent.contentSize.height)}
       />
-      <Button disabled={!text} title="Send Message" onPress={() => SaveMessage(text)} />
+      <Button disabled={!text} title="Send Message" onPress={Submit} />
     </View>
   );
 }
@@ -31,7 +36,8 @@ const styles = StyleSheet.create({
   input: {
     width: "100%",
     margin: 12,
-    borderWidth: 0.5,
+    borderWidth: 1,
     padding: 5,
+    borderRadius: 3,
   },
 });
