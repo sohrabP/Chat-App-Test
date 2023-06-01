@@ -2,7 +2,7 @@ import { StyleSheet, View, FlatList } from "react-native";
 import Message from "./Message";
 
 //Create functions outside of list to avoid having to re-create them during re-renders
-const keyExtractor = (item) => item.date;
+const keyExtractor = (item) => item.id;
 
 const renderItem = ({ item }) => (
   <Message name={item.name} text={item.text} date={item.date} />

@@ -10,6 +10,7 @@ import {
   orderBy,
   endBefore,
 } from "firebase/firestore";
+import { v4 as uuid } from 'uuid'
 import MessagesList from "../components/MessagesList";
 import WriteMessagePanel from "../components/WriteMessagePanel";
 import db from "../firestore";
@@ -24,7 +25,7 @@ export default function ChatScreen({ route }) {
   //Add listener to database on component mount
   React.useEffect(() => {
     const q = query(
-      collection(db, "chat-app-uppsala-2.0"),
+      collection(db, "chat-app-uppsala-4.0"),
       limitToLast(25),
       orderBy("date")
     );
@@ -48,7 +49,7 @@ export default function ChatScreen({ route }) {
 
   async function FetchMore() {
     const q = query(
-      collection(db, "chat-app-uppsala-2.0"),
+      collection(db, "chat-app-uppsala-4.0"),
       orderBy("date"),
       endBefore(lastDocument.current),
       limitToLast(25)
@@ -67,7 +68,8 @@ export default function ChatScreen({ route }) {
 
   async function SaveMessage(text) {
     try {
-      const docRef = await addDoc(collection(db, "chat-app-uppsala-2.0"), {
+      const docRef = await addDoc(collection(db, "chat-app-uppsala-4.0"), {
+        id: uuid(),
         name,
         text,
         date: new Date().toLocaleString("sv-SE"),
